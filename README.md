@@ -18,6 +18,7 @@ Tether is a new programming language designed for simplicity and performance, em
 ### Phase 0: Planning & Research
 
 - [x] Study core requirements for the language (syntax, features, target users)
+	- See `docs/core-requirements.md` for the Phase 0 decisions and minimal spec.
 - [ ] Research existing solutions (Julia, Taichi, Chapel, Futhark, Ray, etc.)
 - [ ] Draft the language’s unique selling points and initial README (this file!)
 - [ ] Define a minimum viable language (MVL) spec (see Phase 1)
@@ -125,3 +126,15 @@ Tether is a new programming language designed for simplicity and performance, em
 Pull requests and design feedback are welcome at all stages! See `CONTRIBUTING.md` for details.
 
 ---
+
+## Quickstart — write and run a .tx file
+
+Create a file such as `examples/hello.tx` and then run the parser and typechecker on it using the helper script:
+
+```
+./scripts/run_tx.sh examples/hello.tx
+```
+
+The script prints a short parse summary followed by typecheck output. This is a lightweight way to start writing and iterating on `.tx` programs.
+
+Next steps: add more examples under `examples/`, or extend `scripts/run_tx.sh` to run a REPL or interpreter as those components are added.

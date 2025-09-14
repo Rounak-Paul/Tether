@@ -1,0 +1,14 @@
+@kernel
+def saxpy(a: f32, x: Array[f32], y: Array[f32]) {
+    i: i32 = global_idx();
+    if (i < len(x)) {
+        y[i] = a * x[i] + y[i];
+    }
+}
+
+// host-side
+N: i32 = 1024;
+x: Array[f32] = ones(N);
+y: Array[f32] = zeros(N);
+saxpy(2.0, x, y);
+print(y[0], y[N-1]);

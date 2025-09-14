@@ -1,0 +1,10 @@
+def get() -> i32 {
+    x: i32 = 10;
+    {
+        x: i32 = 20; // inner shadow, out of scope after block
+    }
+    return x;
+}
+
+res: i32 = get();
+print(res);

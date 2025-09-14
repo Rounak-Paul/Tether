@@ -1,0 +1,4 @@
+def bad() {
+    if (x > 0) 
+        return 1;
+}

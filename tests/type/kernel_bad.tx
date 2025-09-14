@@ -1,0 +1,7 @@
+// Expected: KERNEL_INVALID_TYPE because kernel parameter is generic/missing concrete type
+@kernel
+def bad_kernel(a, b: Array[T]) {
+    // invalid: missing types (T is not concrete)
+    i: i32 = global_idx();
+    b[i] = a;
+}

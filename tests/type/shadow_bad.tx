@@ -1,0 +1,10 @@
+def get() -> i32 {
+    x: i32 = 10;
+    {
+        x: f32 = 3.14; // inner shadow with different type
+        return x; // returns inner x (f32) -> should be a return mismatch
+    }
+}
+
+res: i32 = get();
+print(res);
