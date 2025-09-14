@@ -8,7 +8,7 @@ extern int interp_execute(AST *ast);
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        fprintf(stderr, "usage: tx-runner <file.tx>\n");
+        fprintf(stderr, "usage: tether <file.tx>\n");
         return 2;
     }
     const char *path = argv[1];

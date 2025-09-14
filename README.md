@@ -115,14 +115,14 @@ Below is a detailed, checkbox-style technical roadmap you can work through one i
 
 ### 6) Runners & UX improvements
 - [ ] 6.1 Add helpful runner flags
-	- Files: `parser-runner`, `tx-runner`, `src/parser_runner.c`, `src/tx_runner.c`, `scripts/run_tx.sh`
+	- Files: `parser-runner`, `bin/tether`, `src/parser_runner.c`, `src/tx_runner.c`
 	- Substeps:
 		- [ ] Add `--ast`, `--verbose`, and `--repl` flags with clear help text.
 		- [ ] Add small unit tests or smoke tests for flag parsing and behavior.
 	- Acceptance: runners accept flags and behave as documented.
 
-- [ ] 6.2 Improve `scripts/run_tx.sh`
-	- Files: `scripts/run_tx.sh`
+-- [ ] 6.2 Improve `bin/tether`
+	- Files: `bin/tether`
 	- Substeps:
 		- [ ] Add options to run parser, typechecker, or interpreter.
 		- [ ] Add a `--watch` or `--repeat` helper for quick iterations (optional).
@@ -163,7 +163,7 @@ Next step: pick which item to work on first and I will mark it in the project's 
 Create a file such as `examples/hello.tx` and then run the parser and typechecker on it using the helper script:
 
 ```
-./scripts/run_tx.sh examples/hello.tx
+./bin/tether examples/hello.tx
 ```
 
 The script prints a short parse summary followed by typecheck output. This is a lightweight way to start writing and iterating on `.tx` programs.
