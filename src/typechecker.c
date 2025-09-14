@@ -64,38 +64,9 @@ static const char *scope_get(Scope *s, const char *name) {
 // forward decl to access current scope
 static Scope *CUR_SCOPE = NULL;
 
-static const char *type_of_expr(Expr *e) {
-    if (!e) return "unknown";
-    switch (e->kind) {
-        case EXPR_INT: return "i32"; // prototype default
-        case EXPR_FLOAT: return "f32";
-        case EXPR_IDENT: {
-            const char *t = NULL;
-            if (CUR_SCOPE) t = scope_get(CUR_SCOPE, e->text);
-            if (t) return t;
-            return "unknown";
-        }
-        case EXPR_BINARY: {
-            const char *lt = type_of_expr(e->left);
-            const char *rt = type_of_expr(e->right);
-            if (strcmp(lt, rt) == 0) return lt;
-            return "mismatch";
-        }
-        case EXPR_CALL: {
-            // locate function by name in global scope: we don't have a direct function symbol table,
-            // so we'll return unknown here but check arg counts and types at call sites elsewhere
-            // for prototype, check args types are consistent with each other
-            if (e->arg_count == 0) return "unknown";
-            const char *first = type_of_expr(e->args[0]);
-            for (int i = 1; i < e->arg_count; ++i) {
-                const char *t = type_of_expr(e->args[i]);
-                if (strcmp(t, first) != 0) return "mismatch";
-            }
-            return first;
-        }
-        default: return "unknown";
-    }
-}
+// Note: `type_of_expr` was removed because `check_expr` provides expression
+// type checking and reporting in a single place. Keeping both led to an
+// unused static-function warning under -Wextra.
 
 // Function signature table for call validation
 typedef struct {

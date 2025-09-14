@@ -208,13 +208,13 @@ AST *parser_parse_ast(const char *src) {
             fd.name = strdup(name.text);
             fd.params = NULL; fd.param_count = 0; fd.ret_type = NULL; fd.body = NULL; fd.stmt_count = 0;
             // expect LPAREN
-            Token t = next_tok(); // LPAREN
+            next_tok(); // LPAREN
             // parse params
             Token p = peek_tok();
             if (p.kind != TOK_RPAREN) {
                 while (1) {
                     Token pname = next_tok(); // ident
-                    Token colon = next_tok(); // COLON
+                    next_tok(); // COLON
                     Token ptype = next_tok(); // type ident
                     fd.param_count++;
                     fd.params = realloc(fd.params, sizeof(Param)*fd.param_count);
@@ -230,7 +230,7 @@ AST *parser_parse_ast(const char *src) {
             Token ar = peek_tok();
             if (ar.kind == TOK_ARROW) { next_tok(); Token rtype = next_tok(); fd.ret_type = strdup(rtype.text); }
             // expect LBRACE
-            Token lb = next_tok();
+            next_tok();
             // parse function body statements until closing RBRACE
             while (peek_tok().kind != TOK_RBRACE && peek_tok().kind != TOK_EOF) {
                 Stmt s = parse_statement();
@@ -254,7 +254,8 @@ AST *parser_parse_ast(const char *src) {
                 Token assign = next_tok();
                 if (assign.kind == TOK_ASSIGN) {
                     Expr *e = parse_expression(0);
-                    Token semi = next_tok(); VarDecl vd = {0}; vd.name = strdup(n.text); vd.type = strdup(typ.text); vd.init = e; ast->vars = realloc(ast->vars, sizeof(VarDecl)*(ast->var_count+1)); ast->vars[ast->var_count++] = vd; tok = next_tok(); continue;
+                    next_tok(); // consume semicolon
+                    VarDecl vd = {0}; vd.name = strdup(n.text); vd.type = strdup(typ.text); vd.init = e; ast->vars = realloc(ast->vars, sizeof(VarDecl)*(ast->var_count+1)); ast->vars[ast->var_count++] = vd; tok = next_tok(); continue;
                 }
             }
         }
