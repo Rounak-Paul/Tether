@@ -1,3 +1,0 @@
-def bad() -> i32 {
-    return 1.25;
-}

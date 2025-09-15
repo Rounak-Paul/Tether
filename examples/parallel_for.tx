@@ -1,8 +1,0 @@
-// compute square of indices in parallel
-arr: Array[i32] = zeros(1024);
-
-parallel for (i: i32 = 0; i < len(arr); i = i + 1) {
-    arr[i] = i * i;
-}
-
-print(arr[0], arr[1], arr[1023]);

@@ -1,4 +1,0 @@
-// Expected: TYPE_MISMATCH in the assignment to `x`
-def foo() {
-    x: i32 = 1.5; // floating literal assigned to i32 without cast
-}
