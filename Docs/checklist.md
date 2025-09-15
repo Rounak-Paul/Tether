@@ -3,9 +3,9 @@
 ## Development Environment Setup
 
 ### Prerequisites
-- [ ] **C Compiler**: GCC 9+ or Clang 10+ with C17 support
-- [ ] **Build System**: CMake 3.15+ or Make
-- [ ] **Version Control**: Git
+- [x] **C Compiler**: Clang 10+ with C17 support
+- [x] **Build System**: CMake 3.15+ or Make
+- [x] **Version Control**: Git
 - [ ] **Testing Framework**: Unity or custom test framework
 - [ ] **Memory Debugging**: Valgrind (Linux/Mac) or AddressSanitizer
 - [ ] **Code Formatting**: clang-format or similar
@@ -88,11 +88,11 @@ tether/
 - [ ] Choose and add open source license (MIT, Apache 2.0, etc.)
 
 ### Build System Setup
-- [ ] Create CMakeLists.txt or Makefile
+- [x] Create CMakeLists.txt or Makefile
 - [ ] Configure compiler flags (C17, warnings, optimizations)
-- [ ] Set up debug and release build configurations
+- [x] Set up debug and release build configurations
 - [ ] Configure test target
-- [ ] Set up code coverage if desired
+- [x] Set up code coverage
 
 ### Core Data Structures
 - [ ] **Token structure** for lexer output
