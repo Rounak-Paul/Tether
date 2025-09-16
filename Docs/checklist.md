@@ -96,11 +96,11 @@ tether/
 - [x] Set up code coverage
 
 ### Core Data Structures
-- [ ] **Token structure** for lexer output
-- [ ] **AST node structures** for parse tree
-- [ ] **Symbol table structure** for variables/functions
-- [ ] **Value/Object structure** for runtime values
-- [ ] **Error handling** system with line/column tracking
+- [x] **Token structure** for lexer output (`Tether/src/lexer/tokens.h`)
+- [x] **AST node structures** for parse tree (`Tether/src/parser/ast.h`)
+- [x] **Symbol table structure** for variables/functions (`Tether/src/semantic/symbol_table.h`)
+- [x] **Value/Object structure** for runtime values (`Tether/src/runtime/value.h`)
+- [x] **Error handling** system with line/column tracking (`Tether/src/utils/error.h`)
 
 ## Phase 2: Lexer Implementation (Week 3-4)
 
