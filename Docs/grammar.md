@@ -372,11 +372,11 @@ fn fast_square(x: f64) -> f64 {
 }
 ```
 
-#### @no_mangle
-Prevents name mangling for C interoperability.
+#### @extern
+Marks a function or global as having external (C-compatible) linkage and requests that the compiler emit a stable, unmangled symbol name for FFI/ABI usage.
 
 ```tx
-@no_mangle
+@extern
 pub fn c_compatible_function(x: i32) -> i32 {
     x * 2
 }

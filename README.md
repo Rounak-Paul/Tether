@@ -83,7 +83,7 @@ fn matrix_multiply(a: Matrix, b: Matrix) -> Matrix {
 }
 
 // Note: cluster/distribution decorators are planned; current stable decorators are
-// @parallel, @vectorize, @inline, and @no_mangle as defined in the language grammar.
+// @parallel, @vectorize, @inline, and @extern as defined in the language grammar.
 @parallel
 fn process_large_dataset(data: Dataset) -> Results {
     // Automatically partitioned across cluster nodes
@@ -140,7 +140,7 @@ Sized types ensure predictable performance and memory usage - crucial for high-p
 - **@parallel** - Automatic multi-core distribution
 - **@vectorize** - SIMD optimization and GPU-friendly code generation when beneficial
 - **@inline** - Function inlining hints for the compiler
-- **@no_mangle** - Preserve symbol names for C interop
+- **@extern** - Expose an unmangled, stable symbol for FFI/C interop
 - **Composable decorators** - Combine multiple optimization strategies
 
 ### Automatic Compute Distribution
@@ -183,7 +183,7 @@ tether-node --cores=8 --memory=32GB --gpu=nvidia-rtx4090
 **Transparent Distribution**
 ```tx
 // Cluster-wide distribution is part of the long-term roadmap. Current stable
-// decorators in the language grammar are @parallel, @vectorize, @inline, and @no_mangle.
+// decorators in the language grammar are @parallel, @vectorize, @inline, and @extern.
 // When distribution is implemented it will be documented in `Docs/grammar.md` and
 // in the CLI commands for `tether-node`.
 ```

@@ -126,7 +126,7 @@ typedef enum {
     TOKEN_PARALLEL,     // parallel
     TOKEN_VECTORIZE,    // vectorize
     TOKEN_INLINE,       // inline
-    TOKEN_NO_MANGLE,    // no_mangle
+    TOKEN_EXTERN,       // extern (unmangled external symbol)
     
     // Operators
     TOKEN_PLUS, TOKEN_MINUS, TOKEN_MULTIPLY, TOKEN_DIVIDE,
@@ -188,7 +188,7 @@ typedef struct ASTNode {
     - [ ] **Expression parsing** with operator precedence
     - [ ] **Statement parsing** (declarations, control flow)
     - [ ] **Function definition parsing**
-    - [ ] **Decorator parsing** (@parallel, @vectorize, @inline, @no_mangle, etc.)
+    - [ ] **Decorator parsing** (@parallel, @vectorize, @inline, @extern, etc.)
     - [ ] **Type annotation parsing** (u32, f64[], etc.)
     - [ ] **Error recovery** and meaningful error messages
     - [ ] **AST pretty printing** for debugging
