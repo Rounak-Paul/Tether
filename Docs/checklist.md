@@ -66,6 +66,7 @@ tether/
 ├── docs/                    # Documentation
 │   ├── language_spec.md    # Formal language specification
 │   ├── grammar.bnf         # BNF grammar definition
+│   ├── grammar.md          # Language grammar (source of truth)
 │   ├── examples/           # Code examples
 │   └── architecture.md     # Implementation architecture
 ├── 
@@ -123,8 +124,9 @@ typedef enum {
     // Decorators
     TOKEN_AT,           // @
     TOKEN_PARALLEL,     // parallel
-    TOKEN_DISTRIBUTE,   // distribute  
-    TOKEN_GPU_ACCELERATED, // gpu_accelerated
+    TOKEN_VECTORIZE,    // vectorize
+    TOKEN_INLINE,       // inline
+    TOKEN_NO_MANGLE,    // no_mangle
     
     // Operators
     TOKEN_PLUS, TOKEN_MINUS, TOKEN_MULTIPLY, TOKEN_DIVIDE,
@@ -181,16 +183,16 @@ typedef struct ASTNode {
 } ASTNode;
 ```
 
-### Parser Implementation
-- [ ] **Recursive descent parser** structure
-- [ ] **Expression parsing** with operator precedence
-- [ ] **Statement parsing** (declarations, control flow)
-- [ ] **Function definition parsing**
-- [ ] **Decorator parsing** (@parallel, @distribute, etc.)
-- [ ] **Type annotation parsing** (u32, f64[], etc.)
-- [ ] **Error recovery** and meaningful error messages
-- [ ] **AST pretty printing** for debugging
-- [ ] **Parser tests** with various .tx file samples
+    // Parser Implementation
+    - [ ] **Recursive descent parser** structure
+    - [ ] **Expression parsing** with operator precedence
+    - [ ] **Statement parsing** (declarations, control flow)
+    - [ ] **Function definition parsing**
+    - [ ] **Decorator parsing** (@parallel, @vectorize, @inline, @no_mangle, etc.)
+    - [ ] **Type annotation parsing** (u32, f64[], etc.)
+    - [ ] **Error recovery** and meaningful error messages
+    - [ ] **AST pretty printing** for debugging
+    - [ ] **Parser tests** with various .tx file samples
 
 ## Phase 4: Semantic Analysis (Week 9-10)
 
@@ -215,7 +217,7 @@ typedef struct ASTNode {
 - [ ] **Memory management** for dynamic allocations
 
 ### Initial Built-ins
-- [ ] **print()** function for output
+- [ ] **println()** function for output
 - [ ] **Basic math operations** (+, -, *, /, %)
 - [ ] **Comparison operators**
 - [ ] **Logical operators** (&&, ||, !)
@@ -239,7 +241,7 @@ typedef struct ASTNode {
 
 ## Phase 7: Testing & Quality (Week 19-20)
 
-### Test Suite Development
+- ### Test Suite Development
 - [ ] **Unit tests** for each component
 - [ ] **Integration tests** with .tx programs
 - [ ] **Performance benchmarks**
@@ -272,7 +274,7 @@ typedef struct ASTNode {
 ### Milestone 1: "Hello World" (Week 4)
 ```tx
 fn main() -> i32 {
-    print("Hello, Tether!");
+    println("Hello, Tether!");
     return 0;
 }
 ```
@@ -283,7 +285,7 @@ fn main() -> i32 {
     u32 a = 10;
     u32 b = 20;
     u32 result = a + b;
-    print(result);
+    println(result);
     return 0;
 }
 ```

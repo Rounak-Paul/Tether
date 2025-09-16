@@ -34,7 +34,7 @@ Tether is a systems programming language designed for high-performance computing
 
 ### 3.1 Input Format
 - Source files are UTF-8 encoded text
-- File extension: `.tether` or `.th`
+- File extension: `.tx` or `.th`
 - Line endings: `\n`, `\r\n`, or `\r`
 
 ### 3.2 Whitespace and Comments
@@ -337,7 +337,7 @@ Keywords are reserved and cannot be used as identifiers.
 #### @parallel
 Indicates that a function or loop should be executed in parallel across available CPU cores.
 
-```tether
+```tx
 @parallel
 fn parallel_sum(data: [i32]) -> i32 {
     let mut total = 0;
@@ -351,7 +351,7 @@ fn parallel_sum(data: [i32]) -> i32 {
 #### @vectorize
 Requests SIMD vectorization for mathematical operations.
 
-```tether
+```tx
 @vectorize
 fn vector_add(a: [f32], b: [f32]) -> [f32] {
     let mut result = [0.0; a.len()];
@@ -365,7 +365,7 @@ fn vector_add(a: [f32], b: [f32]) -> [f32] {
 #### @inline
 Suggests function inlining for performance.
 
-```tether
+```tx
 @inline
 fn fast_square(x: f64) -> f64 {
     x * x
@@ -375,7 +375,7 @@ fn fast_square(x: f64) -> f64 {
 #### @no_mangle
 Prevents name mangling for C interoperability.
 
-```tether
+```tx
 @no_mangle
 pub fn c_compatible_function(x: i32) -> i32 {
     x * 2
@@ -480,14 +480,14 @@ String manipulation
 ## 9. Example Programs
 
 ### 9.1 Hello World
-```tether
+```tx
 fn main() {
     println("Hello, Tether!");
 }
 ```
 
 ### 9.2 Fibonacci Sequence
-```tether
+```tx
 fn fibonacci(n: u32) -> u64 {
     if n <= 1 {
         n as u64
@@ -504,7 +504,7 @@ fn main() {
 ```
 
 ### 9.3 Parallel Processing
-```tether
+```tx
 use std::thread;
 
 @parallel
@@ -526,7 +526,7 @@ fn main() {
 ```
 
 ### 9.4 Struct and Methods
-```tether
+```tx
 struct Point {
     x: f64,
     y: f64,

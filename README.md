@@ -31,7 +31,7 @@ Tether eliminates this cognitive overhead. Write your algorithm once, and Tether
 ## Language Design Principles
 
 ### 1. **Automatic Everything**
-```tether
+```tx
 // This automatically uses all available cores, GPUs, and cluster nodes
 @parallel
 fn process_data(dataset: Dataset) -> Results[] {
@@ -43,7 +43,7 @@ fn process_data(dataset: Dataset) -> Results[] {
 No explicit thread creation, no manual GPU kernel launches, no distributed computing boilerplate. Simple decorators tell the runtime how to optimize execution.
 
 ### 2. **Write Once, Run Anywhere**
-```tether
+```tx
 // Same exact code, different execution targets
 fn monte_carlo_simulation(iterations: u64) -> Results {
     parallel_for i in 0..iterations {
@@ -67,7 +67,7 @@ tether run --target=cluster simulation.tx
 Write your algorithm once. The runtime target determines where and how it executes - no code changes needed.
 
 ### 3. **Decorator-Based Parallelism**
-```tether
+```tx
 @parallel
 fn monte_carlo_simulation(iterations: u64) -> f64 {
     // Automatically distributed across available resources
@@ -76,13 +76,15 @@ fn monte_carlo_simulation(iterations: u64) -> f64 {
     }
 }
 
-@gpu_accelerated  
+@vectorize  
 fn matrix_multiply(a: Matrix, b: Matrix) -> Matrix {
     // Automatically compiled to GPU kernels when beneficial
     // Falls back to CPU if no GPU available
 }
 
-@distribute
+// Note: cluster/distribution decorators are planned; current stable decorators are
+// @parallel, @vectorize, @inline, and @no_mangle as defined in the language grammar.
+@parallel
 fn process_large_dataset(data: Dataset) -> Results {
     // Automatically partitioned across cluster nodes
 }
@@ -91,7 +93,7 @@ fn process_large_dataset(data: Dataset) -> Results {
 Simple decorators handle all parallelization complexity - no manual thread management needed.
 
 ### 4. **Explicit Sized Types**
-```tether
+```tx
 // Precise control over memory layout and performance
 u8 byte_value = 255;           // 8-bit unsigned
 i32 signed_int = -1000;        // 32-bit signed  
@@ -136,9 +138,9 @@ Sized types ensure predictable performance and memory usage - crucial for high-p
 
 ### Decorator-Based Parallelism
 - **@parallel** - Automatic multi-core distribution
-- **@gpu_accelerated** - GPU kernel generation when beneficial  
-- **@distribute** - Cluster-wide execution across tether-nodes
-- **@vectorize** - SIMD optimization for suitable operations
+- **@vectorize** - SIMD optimization and GPU-friendly code generation when beneficial
+- **@inline** - Function inlining hints for the compiler
+- **@no_mangle** - Preserve symbol names for C interop
 - **Composable decorators** - Combine multiple optimization strategies
 
 ### Automatic Compute Distribution
@@ -179,12 +181,11 @@ tether-node --cores=8 --memory=32GB --gpu=nvidia-rtx4090
 - Load rebalancing when cluster topology changes
 
 **Transparent Distribution**
-```tether
-// Automatically distributes across available cluster nodes
-@distribute
-fn run_monte_carlo_simulation(iterations: u64, parameters: ModelParams) -> SimulationResults {
-    // Function automatically partitioned across cluster
-}
+```tx
+// Cluster-wide distribution is part of the long-term roadmap. Current stable
+// decorators in the language grammar are @parallel, @vectorize, @inline, and @no_mangle.
+// When distribution is implemented it will be documented in `Docs/grammar.md` and
+// in the CLI commands for `tether-node`.
 ```
 
 The runtime decides whether to run locally, distribute across cluster, or use hybrid approach.
@@ -192,7 +193,7 @@ The runtime decides whether to run locally, distribute across cluster, or use hy
 ### Unified Programming Model
 
 **Single Source for All Targets**
-```tether
+```tx
 // Write algorithm once with decorators
 @parallel
 fn matrix_multiply(a: Matrix, b: Matrix) -> Matrix {
@@ -225,7 +226,7 @@ $ tether repl
 
 **Production Compilation**
 ```bash
-$ tether compile --optimize=cluster simulation.tx
+# tether compile --optimize=cluster simulation.tx
 # Generates optimized native code with cluster distribution
 ```
 
